@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+<div align=center>
+    <img src="https://github.com/Moment-Junction-Asia-2024/Moment-Front/blob/main/public/logo.png?raw=true"  width="320" />
+    <h3>Smart City Operting System Powered by Large Multimodal Models</h3>
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## DEMO
+<div align=center> 
+    <a href="#">PRESENTATION</a> (TBD) | <a href="https://www.youtube.com/watch?v=e88YnJ7eKqQ">DEMO VIDEO</a>
+</div>
 
-## Available Scripts
+## Key Features
+- Conversational Data Exploration
+    - Explore massive city-scale data with natural language.
+- City-scale Data-driven Decision Making
+    - Make important decision based on ATHENA's analysis.
+- Rapid Response to Emergency Problems
+    - ATHENA helps you to solve problem end-to-end manner, starting from situation awareness to dispatching assets.
 
-In the project directory, you can run:
+## UI
+<img href="https://github.com/Moment-Junction-Asia-2024/Moment-Front/blob/main/public/main_page.png?raw=true">
 
-### `npm start`
+## Use Case: Find a Missing Child
+```
+POLICE OFFICER: Find a missing girl wearing blue jacket. She was missing at gangnam station about 5 pm.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+ATHENA #1:  Searching available assets near the gangnam station...
+ATHENA #2: Retrieving CCTV videos from 4:55 pm to 5:15pm...
+ATHENA #3: Running analysis to the retrieved videos.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+ATHENA: Here are the CCTV videos that include "girl with a blue jacket".
+[Returns Candidate Videos]
 
-### `npm test`
+POLICE OFFICER: Let's look into the video #4!
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+ATHENA: Video #4 came from CCTV at exit number 2, gangnam station. I'll look into another information nearby!
 
-### `npm run build`
+ATHENA #1: Searching available assets near the exit number 2...
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Teams
+| Name | Role |
+| ---  | ---- |
+| [Eunsol Kang](https://github.com/eunsolkang) | FE Engineer |
+| [Chaewon Kim](https://github.com/chae401) | BE Engineer |
+| [Younghwan Pahn](https://github.com/lopahn2) | BE Engineer |
+| [Gio Paik](https://github.com/skyil7) | ML Engineer |
+| [Yunseo Choe](https://github.com/yunseo323) | PM |
