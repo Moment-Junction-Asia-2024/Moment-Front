@@ -4,11 +4,15 @@ import HeaderComponent from "./Header";
 import SearchInput from "./Search";
 import {useNavigate} from "react-router";
 import Container from "./Container";
+import {Edit2, Edit3, EditIcon, MessageCircle} from "lucide-react";
+// import {Tooltip} from "react-tooltip";
 
 
 const Title = styled.h1`
   font-size: 24px;
   margin-bottom: 20px;
+  cursor: pointer;
+  text-underline: black;
 `;
 
 const Image = styled.img`
@@ -53,7 +57,11 @@ const SubmitButton = styled.button`
   }
 `;
 
-const VideoAnswer = ({title, description}) => {
+const Video = styled.video`
+  width: 100%;
+`
+
+const VideoAnswer = ({title, description, onClick}) => {
     const navigate = useNavigate();
 
     const handleKeyDown = (event) => {
@@ -64,11 +72,18 @@ const VideoAnswer = ({title, description}) => {
 
     return (
         <>
-            <Title>{title}</Title>
-            <Image src="/mock_image.png" alt="Vehicle parked on sidewalk" />
+            <Title  onClick={onClick}>{title} <Edit3 size={18} data-tooltip-content='You can change date about search period' data-tooltip-id='tooltip' /></Title>
+            <Video src={"/video.mp4"} autoPlay={true}></Video>
+            {/*<Image src="/mock_image.png" alt="Vehicle parked on sidewalk"/>*/}
             <Description>
                 {description}
             </Description>
+            {/*<Tooltip*/}
+            {/*    id='tooltip'*/}
+            {/*    backgroundColor='gray'*/}
+            {/*    place="bottom"*/}
+            {/*    arrowColor='transparent'*/}
+            {/*/>*/}
         </>
     );
 };

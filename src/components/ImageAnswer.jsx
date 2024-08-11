@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import { RefreshCcw, MessageCircle } from 'lucide-react';
 import HeaderComponent from "./Header";
 import Container from "./Container";
+import { X } from 'lucide-react';
 
 
 const Breadcrumb = styled.div`
@@ -17,7 +18,7 @@ const Title = styled.h1`
 
 const InfoGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
 `;
 
@@ -106,83 +107,109 @@ const ActionDescription = styled.div`
   color: #666;
 `;
 
+
+// ... (기존의 styled components는 그대로 유지)
+
+const ModalBackdrop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+`;
+
+const ModalContent = styled.div`
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+  z-index: 1000;
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+`;
+
+const Modal = ({ isOpen, onClose, videoSrc }) => {
+    if (!isOpen) return null;
+
+    return (
+        <ModalBackdrop onClick={onClose}>
+            <ModalContent onClick={e => e.stopPropagation()}>
+                <CloseButton onClick={onClose}>
+                    <X />
+                </CloseButton>
+                <video width="100%" controls autoPlay>
+                    <source src={videoSrc} type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+            </ModalContent>
+        </ModalBackdrop>
+    );
+};
+
 const ImageAnswer = () => {
+    const [modalOpen, setModalOpen] = useState(false);
+    const [currentVideo, setCurrentVideo] = useState('');
+
+    const openModal = (videoSrc) => {
+        setCurrentVideo(videoSrc);
+        setModalOpen(true);
+    };
+
     return (
         <>
-            <HeaderComponent></HeaderComponent>
-            <Container>
-                <Breadcrumb>Inquiries / Pothole on 3rd Street</Breadcrumb>
-                <Title>Pothole on 3rd Street</Title>
-                <InfoGrid>
-                    <InfoItem>
-                        <InfoLabel>Submitted 2 days ago</InfoLabel>
-                        <InfoValue><strong>Location</strong></InfoValue>
-                        <InfoValue>3rd Street, San Francisco</InfoValue>
-                        <Image src="/crack.png" alt="Map" />
-                    </InfoItem>
-                    <InfoItem>
-                        <InfoLabel>Submitted 2 days ago</InfoLabel>
-                        <InfoValue><strong>Description</strong></InfoValue>
-                        <InfoValue>Large pothole, needs repair</InfoValue>
-                        <Image src="/crack.png" alt="Pothole" />
-                    </InfoItem>
-                    <InfoItem>
-                        <InfoLabel>Submitted 2 days ago</InfoLabel>
-                        <InfoValue><strong>Submitter</strong></InfoValue>
-                        <InfoValue>Jane Doe, 415-555-1234, janedoe@gmail.com</InfoValue>
-                        <Image src="/crack.png" alt="Submitter" />
-                    </InfoItem>
-                    <InfoItem>
-                        <InfoLabel>Submitted 2 days ago</InfoLabel>
-                        <InfoValue><strong>Status</strong></InfoValue>
-                        <InfoValue style={{color: 'blue'}}>Open</InfoValue>
-                        <Image src="/api/placeholder/400/200" alt="Status" />
-                    </InfoItem>
-                </InfoGrid>
-                <Timeline>
-                    <TimelineItem>
-                        <TimelineIcon src="/user.png" alt="John Smith" />
-                        <TimelineContent>
-                            <TimelineTitle>Assigned to road repair crew</TimelineTitle>
-                            <TimelineDescription>John Smith</TimelineDescription>
-                        </TimelineContent>
-                    </TimelineItem>
-                    <TimelineItem>
-                        <TimelineIcon src="/user.png" alt="Road Repair Crew" />
-                        <TimelineContent>
-                            <TimelineTitle>Road repair crew dispatched</TimelineTitle>
-                            <TimelineDescription>Road Repair Crew</TimelineDescription>
-                        </TimelineContent>
-                    </TimelineItem>
-                    <TimelineItem>
-                        <TimelineIcon src="/user.png" alt="Road Repair Crew" />
-                        <TimelineContent>
-                            <TimelineTitle>Pothole repaired</TimelineTitle>
-                            <TimelineDescription>Road Repair Crew</TimelineDescription>
-                        </TimelineContent>
-                    </TimelineItem>
-                </Timeline>
-                <Actions>
-                    <ActionTitle>Actions</ActionTitle>
-                    <ActionButton>
-                        <ActionIcon><RefreshCcw size={18} /></ActionIcon>
-                        <ActionText>
-                            <div>Reassign</div>
-                            <ActionDescription>Assign this inquiry to a different department or team</ActionDescription>
-                        </ActionText>
-                    </ActionButton>
-                    <ActionButton>
-                        <ActionIcon><MessageCircle size={18} /></ActionIcon>
-                        <ActionText>
-                            <div>Message submitter</div>
-                            <ActionDescription>Send a message to the submitter</ActionDescription>
-                        </ActionText>
-                    </ActionButton>
-                </Actions>
-            </Container>
-
+            <InfoGrid>
+                <InfoItem>
+                    <InfoLabel>1 days ago</InfoLabel>
+                    <InfoValue><strong>22:08</strong></InfoValue>
+                    <InfoValue>CCTV3</InfoValue>
+                    <Image
+                        src="/frame.jpg"
+                        alt="Pothole"
+                        onClick={() => openModal("/cctv1.mp4")}
+                        style={{ cursor: 'pointer' }}
+                    />
+                </InfoItem>
+                <InfoItem>
+                    <InfoLabel>2 days ago</InfoLabel>
+                    <InfoValue><strong>23:21</strong></InfoValue>
+                    <InfoValue>CCTV2</InfoValue>
+                    <Image
+                        src="/frame2.jpg"
+                        alt="Submitter"
+                        onClick={() => openModal("/cctv2.mp4")}
+                        style={{ cursor: 'pointer' }}
+                    />
+                </InfoItem>
+                <InfoItem>
+                    <InfoLabel>2 days ago</InfoLabel>
+                    <InfoValue><strong>23:33</strong></InfoValue>
+                    <InfoValue style={{color: 'blue'}}>Check</InfoValue>
+                    <Image
+                        src="/frame3.jpg"
+                        alt="Status"
+                        onClick={() => openModal("/cctv3.mp4")}
+                        style={{ cursor: 'pointer' }}
+                    />
+                </InfoItem>
+            </InfoGrid>
+            <Modal
+                isOpen={modalOpen}
+                onClose={() => setModalOpen(false)}
+                videoSrc={currentVideo}
+            />
         </>
-
     );
 };
 

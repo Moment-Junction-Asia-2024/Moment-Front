@@ -5,12 +5,19 @@ import HeaderComponent from "./Header";
 import SearchInput from "./Search";
 import {useNavigate} from "react-router";
 import Container from "./Container";
-import {TypingText} from "./TypingText";
 import VideoAnswer from "./VideoAnswer";
 import Lottie from "react-lottie-player";
 import animationData from '../lottie/ai.json';
 import ActionAnswer from "./ActionAnswer";
-import Question from "./Question"; // Lottie JSON 파일 경로
+import Question from "./Question";
+import {ImageFilterPopup} from "./ImageFilterPopup"; // Lottie JSON 파일 경로
+import {EditIcon} from "lucide-react";
+import axios from "axios";
+import {Typewriter} from "react-simple-typewriter";
+import {MapComponent} from "./Map";
+import { useLocation } from 'react-router-dom';
+
+
 
 const Header = styled.header`
   display: flex;
@@ -71,6 +78,49 @@ const TextAnswer = () => {
     const [video, setVideo] = useState(null)
     const navigate = useNavigate();
     const messageEndRef = useRef(null);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+    const [messages, setMessages] = useState([]);
+    const [inputMessage, setInputMessage] = useState('');
+    const socketRef = useRef(null);
+
+    const [message, setMessage] = useState('');
+    const [response, setResponse] = useState('');
+    const location = useLocation();
+
+    const queryParams = new URLSearchParams(location.search);
+
+    const question = queryParams.get('quest');
+
+    const handleSubmit = async (e) => {
+        try {
+            const result = await axios.post('http://192.168.67.102:8080/action/', {
+                userPrompt: question
+            });
+            setResponse(result.data);
+            setMessage('');
+        } catch (error) {
+            console.error('Error sending message:', error);
+            setResponse('Error: Unable to send message');
+        }
+    };
+
+    useEffect(() => {
+
+        handleSubmit();
+        // WebSocket 서버 주소를 적절히 변경해야 합니다
+        socketRef.current = new WebSocket('ws://192.168.67.102:8089');
+
+        socketRef.current.onmessage = (event) => {
+            const message = JSON.parse(event.data);
+            setMessages((prevMessages) => [...prevMessages, message]);
+        };
+
+        return () => {
+            socketRef.current.close();
+        };
+    }, []);
+
 
     // useEffect(() => {
     //
@@ -80,12 +130,16 @@ const TextAnswer = () => {
         // messageEndRef.current.scrollIntoView({ behavior: 'smooth' });
     };
 
+    const onClickSearch = () => {
+
+    }
+
     const onAction = () => {
         setVideo(false);
         setTimeout(() => {
             setVideo(true)
             setTimeout(() => {
-                messageEndRef.current.scrollIntoView({ behavior: 'smooth' });
+                messageEndRef.current.scrollIntoView({behavior: 'smooth'});
             }, 500)
         }, 2000)
     }
@@ -94,44 +148,32 @@ const TextAnswer = () => {
         <Container>
             <HeaderComponent></HeaderComponent>
             <Breadcrumb>Civil complaint / Find missing children</Breadcrumb>
-            <Question>A child in blue went missing at 18:00 at the Gyeongju Hwabaek Convention Center.</Question>
-            <Title>A child in blue went missing at 18:00 at the Gyeongju Hwabaek Convention Center.
-            </Title>
-            <Content>
-                <TypingText speed={10}
-                            text={"Search CCTV within a 100m radius of Gyeongju Hwabaek Convention Center and extract images from 17:55 to 18:05.."}
-                            onAction={onAction}
-                ></TypingText>
-            </Content>
-            {/*<ViewMoreButton>View more details</ViewMoreButton>*/}
+            <Question>{question}</Question>
+
             {
-                video === null  ? <></> :  video === true   ?
-                    <>
-                        <VideoAnswer
-                            title={'before 17:55 ~ 18:05 Videos '}
-                            description={'From CCTV 3-12, 4-12'}
-                        />
-                        <ActionAnswer>
-
-                        </ActionAnswer>
-                    </>
-
-                    :
-                    <LottieContainer>
-                        <Lottie
-                            loop
-                            animationData={animationData}
-                            play
-                            style={{width: 150, height: 150, margin: "0 auto"}}
-                        />
-                    </LottieContainer>
+                messages.map(m => {
+                    const c = JSON.parse(m.content);
+                    console.log(m)
+                    return (
+                        <Content>
+                            {c.content}
+                        </Content>
+                    )
+                })
             }
-
-
+            <>
+                <LottieContainer>
+                    <Lottie
+                        loop
+                        animationData={animationData}
+                        play
+                        style={{width: 150, height: 150, margin: "0 auto"}}
+                    />
+                </LottieContainer>
+            </>
             <div ref={messageEndRef}></div>
-            <SearchInput onKeyDown={handleKeyDown}>
-
-            </SearchInput>
+            <SearchInput onKeyDown={handleKeyDown} onClickSearch={handleSubmit}/>
+            <ImageFilterPopup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)}></ImageFilterPopup>
         </Container>
     );
 };

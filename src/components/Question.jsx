@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from "styled-components";
 
 export default function Question({children}){
@@ -11,6 +12,7 @@ export default function Question({children}){
         text-align: right;
         display: inline-block;
       }
+      margin-bottom: 15px;
     `
     return(
         <QuestionBox>

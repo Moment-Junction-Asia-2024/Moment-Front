@@ -56,8 +56,9 @@ function HeaderComponent() {
             <Header>
                 <Logo><Link to={'/'}><img src={'/logo.png'}/></Link></Logo>
                 <Nav>
-                    <NavItem href="#">Home</NavItem>
-                    <NavItem href="#">Services</NavItem>
+                    <NavItem href="/">Home</NavItem>
+                    <NavItem href="/inquiries">inquiries</NavItem>
+                    <NavItem href="/incidents">incidents</NavItem>
                 </Nav>
             </Header>
         </Container>
