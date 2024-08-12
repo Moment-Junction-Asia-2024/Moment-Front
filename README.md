@@ -23,7 +23,7 @@
 <table align="center">
 	<tr>
 		<td>
-			<img style="width:450px;" src="/docs/main_page.png">
+			<img style="width:450px;" alt="Screenshot 2024-08-11 at 11 38 23 AM" src="https://github.com/user-attachments/assets/5fc6f45b-c93b-4350-8829-81e686429603">
 		</td>
 		<td>
 			<img style="width:450px;" src="/docs/video retrieval.jpg">
@@ -54,8 +54,6 @@
 		</td>
 	</tr>
 </table>
-<img href="https://github.com/Moment-Junction-Asia-2024/Moment-Front/blob/main/public/main_page.png?raw=true">
-<img width="1257" alt="Screenshot 2024-08-11 at 11 38 23 AM" src="https://github.com/user-attachments/assets/5fc6f45b-c93b-4350-8829-81e686429603">
 
 
 ## Use Case: Find a Missing Child
