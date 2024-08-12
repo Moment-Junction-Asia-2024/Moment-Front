@@ -2,21 +2,58 @@
     <img src="https://github.com/Moment-Junction-Asia-2024/Moment-Front/blob/main/public/logo.png?raw=true"  width="320" />
     <h3>Smart City Operting System Powered by Large Multimodal Models</h3>
 </div>
-
-## DEMO
-<div align=center> 
+<hr>
+<div align=center>
+    <h5>🏆Junction ASIA 2024 Special Prize Winner🏆</h5>
     <a href="#">PRESENTATION</a> (TBD) | <a href="https://www.youtube.com/watch?v=e88YnJ7eKqQ">DEMO VIDEO</a>
 </div>
 
 ## Key Features
-- Conversational Data Exploration
+- **Conversational Data Exploration**
     - Explore massive city-scale data with natural language.
-- City-scale Data-driven Decision Making
+- **City-scale Data-driven Decision Making**
     - Make important decision based on ATHENA's analysis.
-- Rapid Response to Emergency Problems
+- **Rapid Response to Emergency Problems**
     - ATHENA helps you to solve problem end-to-end manner, starting from situation awareness to dispatching assets.
 
+### ATHENA LAM (Large Action Model)
+<img src="docs/LAM Design.jpg">
+
 ## UI
+<table align="center">
+	<tr>
+		<td>
+			<img style="width:450px;" src="/docs/main_page.png">
+		</td>
+		<td>
+			<img style="width:450px;" src="/docs/video retrieval.jpg">
+		</td>
+	</tr>
+	<tr>
+		<td align="center">
+			<b>Main Page</b>
+		</td>
+		<td align="center">
+			<b>Data Exploration</b>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<img style="width:450px;" src="/docs/inqueries dashboard.png">
+		</td>
+		<td>
+			<img style="width:450px;" src="/docs/incident monitoring.png">
+		</td>
+	</tr>
+	<tr>
+		<td align="center">
+			<b>Inqueries Dashboard</b>
+		</td>
+		<td align="center">
+			<b>Incident Monitoring</b>
+		</td>
+	</tr>
+</table>
 <img href="https://github.com/Moment-Junction-Asia-2024/Moment-Front/blob/main/public/main_page.png?raw=true">
 
 ## Use Case: Find a Missing Child
