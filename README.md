@@ -17,7 +17,9 @@
     - ATHENA helps you to solve problem end-to-end manner, starting from situation awareness to dispatching assets.
 
 ### ATHENA LAM (Large Action Model)
-<img src="/docs/LAM Design.jpg">
+<div align="center">
+	<img style="width:800px;" src="/docs/LAM Design.png">
+</div>
 
 ## UI
 <table align="center">
